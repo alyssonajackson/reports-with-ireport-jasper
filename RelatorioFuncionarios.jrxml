@@ -19,15 +19,6 @@
 	<variable name="totalsalariosreport" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{salario}]]></variableExpression>
 	</variable>
-	<variable name="totalfuncionarioscidade" class="java.lang.String" resetType="Group" resetGroup="g_cidade" calculation="Count">
-		<variableExpression><![CDATA[$F{funcionario}]]></variableExpression>
-	</variable>
-	<variable name="totalfuncionariosestado" class="java.lang.String" resetType="Group" resetGroup="estado" calculation="Count">
-		<variableExpression><![CDATA[$F{funcionario}]]></variableExpression>
-	</variable>
-	<variable name="totalfuncionariosreport" class="java.lang.String" calculation="DistinctCount">
-		<variableExpression><![CDATA[$F{salario}]]></variableExpression>
-	</variable>
 	<group name="estado" isStartNewPage="true" isReprintHeaderOnEachPage="true">
 		<groupExpression><![CDATA[$F{estado}]]></groupExpression>
 		<groupHeader>
