@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFuncionarios.jrxml" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7237b604-7568-482a-876a-0be85e87d433">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="101"/>
+	<property name="ireport.y" value="112"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -25,8 +25,8 @@
 	<variable name="totalfuncionariosestado" class="java.lang.String" resetType="Group" resetGroup="estado" calculation="Count">
 		<variableExpression><![CDATA[$F{funcionario}]]></variableExpression>
 	</variable>
-	<variable name="totalfuncionariosreport" class="java.lang.String" calculation="Count">
-		<variableExpression><![CDATA[$F{funcionario}]]></variableExpression>
+	<variable name="totalfuncionariosreport" class="java.lang.String" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{salario}]]></variableExpression>
 	</variable>
 	<group name="estado" isStartNewPage="true" isReprintHeaderOnEachPage="true">
 		<groupExpression><![CDATA[$F{estado}]]></groupExpression>
@@ -55,9 +55,9 @@
 					<reportElement x="10" y="21" width="294" height="20" uuid="5aaa8896-5102-464e-82d5-51651416daa6"/>
 					<textFieldExpression><![CDATA["O número de funcionários do estado " + $F{estado} + " é: "]]></textFieldExpression>
 				</textField>
-				<textField pattern="R$ #,##0.00">
-					<reportElement x="304" y="21" width="100" height="20" uuid="a6c1726e-cb2c-4651-ac21-cec4d7a4f3c8"/>
-					<textFieldExpression><![CDATA[$V{totalfuncionariosestado}]]></textFieldExpression>
+				<textField>
+					<reportElement x="304" y="21" width="100" height="20" uuid="4b2a32a9-9412-409e-9d44-b4bb0a627038"/>
+					<textFieldExpression><![CDATA[$V{estado_COUNT}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -103,8 +103,8 @@
 					<textFieldExpression><![CDATA["O número de funcionários da cidade " + $F{cidade} + " é: "]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="304" y="26" width="100" height="20" uuid="6c4848b5-2b76-4a1a-84ce-1a3fb28bd7e2"/>
-					<textFieldExpression><![CDATA[$V{totalfuncionarioscidade}]]></textFieldExpression>
+					<reportElement x="304" y="26" width="100" height="20" uuid="34f95f1b-1dac-408b-bea7-a7b4e6ecee36"/>
+					<textFieldExpression><![CDATA[$V{g_cidade_COUNT}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -187,8 +187,8 @@
 				<textFieldExpression><![CDATA["O total de funcionários do relatório é: "]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="186" y="21" width="100" height="20" uuid="29db928a-4f8e-440d-a9a8-be4eb312b874"/>
-				<textFieldExpression><![CDATA[$V{totalfuncionariosreport}]]></textFieldExpression>
+				<reportElement x="186" y="22" width="100" height="20" uuid="ddb82ca4-d215-4499-80af-d35209c8d9fc"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
