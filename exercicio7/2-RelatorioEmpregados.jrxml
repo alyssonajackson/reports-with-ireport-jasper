@@ -12,6 +12,15 @@
 	<field name="telefone" class="java.lang.String"/>
 	<field name="salario" class="java.math.BigDecimal"/>
 	<field name="email" class="java.lang.String"/>
+	<variable name="totalsalarioscidade" class="java.math.BigDecimal" resetType="Group" resetGroup="Cidade" calculation="Sum">
+		<variableExpression><![CDATA[$F{salario}]]></variableExpression>
+	</variable>
+	<variable name="totalsalariosreport" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{salario}]]></variableExpression>
+	</variable>
+	<variable name="totalsalariosempresa" class="java.math.BigDecimal" resetType="Group" resetGroup="Empresa" calculation="Sum">
+		<variableExpression><![CDATA[$F{salario}]]></variableExpression>
+	</variable>
 	<group name="Empresa">
 		<groupExpression><![CDATA[$F{empresa}]]></groupExpression>
 		<groupHeader>
@@ -29,7 +38,24 @@
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="50"/>
+			<band height="50">
+				<textField pattern="R$ #,##0.00">
+					<reportElement x="304" y="5" width="100" height="20" uuid="e896cc05-a773-49e5-b159-d024cbff5c59"/>
+					<textFieldExpression><![CDATA[$V{totalsalariosempresa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="25" width="294" height="20" uuid="9c9f60d0-4680-4d85-aace-852d13021d93"/>
+					<textFieldExpression><![CDATA["O número de funcionários da empresa " + $F{empresa} + " é: "]]></textFieldExpression>
+				</textField>
+				<textField pattern="R$ #,##0.00">
+					<reportElement x="304" y="25" width="100" height="20" uuid="86ba8fb1-7001-49c5-8df7-f9b7983c3013"/>
+					<textFieldExpression><![CDATA[$V{totalsalariosreport}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="5" width="294" height="20" uuid="e5441a7d-ea3d-4b88-9dd8-7caa36d0bc97"/>
+					<textFieldExpression><![CDATA["O total dos salários da empresa " + $F{empresa} + " é: "]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupFooter>
 	</group>
 	<group name="Cidade">
@@ -77,7 +103,24 @@
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="50"/>
+			<band height="50">
+				<textField>
+					<reportElement x="20" y="5" width="294" height="20" uuid="8b82f414-5b2a-47e5-b9d3-746f35b5d69b"/>
+					<textFieldExpression><![CDATA["O total dos salários da cidade " + $F{cidade} + " é: "]]></textFieldExpression>
+				</textField>
+				<textField pattern="R$ #,##0.00">
+					<reportElement x="314" y="5" width="100" height="20" uuid="139d217b-0f80-441b-a8bf-4703265734e3"/>
+					<textFieldExpression><![CDATA[$V{totalsalarioscidade}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="20" y="25" width="294" height="20" uuid="c7da5e21-9506-471e-90d3-01ec68a77f17"/>
+					<textFieldExpression><![CDATA["O número de funcionários da cidade " + $F{cidade} + " é: "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="314" y="25" width="100" height="20" uuid="98919948-0eae-4963-b069-dd16d7b5372a"/>
+					<textFieldExpression><![CDATA[$V{Cidade_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupFooter>
 	</group>
 	<background>
@@ -120,7 +163,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
 			</textField>
-			<textField pattern="¤ #,##0.00">
+			<textField pattern="R$ #,##0.00">
 				<reportElement x="438" y="1" width="102" height="20" uuid="06ee4f37-9c5c-481b-989a-27318d03e31c"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial"/>
@@ -137,16 +180,16 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="74" splitType="Stretch">
+		<band height="99" splitType="Stretch">
 			<textField evaluationTime="Report">
-				<reportElement x="484" y="54" width="40" height="20" uuid="c5957652-3de7-40a1-949c-0f6bbea358e6"/>
+				<reportElement x="484" y="73" width="40" height="20" uuid="c5957652-3de7-40a1-949c-0f6bbea358e6"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="404" y="54" width="80" height="20" uuid="146f0ff8-d4ed-4aa2-92c7-6957f71fe9f0"/>
+				<reportElement x="404" y="73" width="80" height="20" uuid="146f0ff8-d4ed-4aa2-92c7-6957f71fe9f0"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial"/>
 				</textElement>
@@ -167,11 +210,25 @@
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MM/dd/yyyy">
-				<reportElement x="24" y="54" width="100" height="20" uuid="877530c5-9fae-4793-a987-ffcbdc787185"/>
+				<reportElement x="24" y="73" width="100" height="20" uuid="877530c5-9fae-4793-a987-ffcbdc787185"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="39" width="322" height="20" uuid="1a2a3b76-80ad-40bc-bfc0-b7bd959760db"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O total de salários: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="39" width="100" height="20" uuid="6f107597-25de-4d6c-b8d4-2b71304bf065"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
