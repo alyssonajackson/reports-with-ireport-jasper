@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioProfessores" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0788464b-c803-4dc4-a7f2-141fb841b757">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT P.nome,P.cpf,D.curso,D.nome AS disciplina FROM TB_PROFESSOR PROF
+LEFT JOIN TB_DISCIPLINA D ON D.PROFESSOR_ID = PROF.ID
+INNER JOIN TB_PESSOA P ON P.ID = PROF.ID
+
+ORDER BY P.nome ASC]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="curso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="disciplina" class="java.lang.String"/>
+	<group name="professor">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+		<groupHeader>
+			<band height="39">
+				<staticText>
+					<reportElement x="17" y="12" width="36" height="20" uuid="fea3db25-59f1-4bef-9f26-e6bcd637e5f8"/>
+					<textElement>
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nome:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="53" y="12" width="270" height="20" uuid="17cc90d5-8f04-4dc4-956a-72b240b62acb"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="323" y="12" width="30" height="20" uuid="fbdcdd2e-3668-40e1-903f-47031feba7bd"/>
+					<textElement>
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CPF:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="353" y="12" width="179" height="20" uuid="5807ddd4-93b0-4c41-9c95-89f583ea8a21"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="3">
+				<line>
+					<reportElement x="0" y="2" width="552" height="1" uuid="cd441da0-e86d-4963-bb2e-6411accbd12a"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="555" height="25" uuid="4f4394de-75c9-436d-a2ba-fe5e89db9764"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Relatório de Professores]]></text>
+			</staticText>
+			<image>
+				<reportElement x="18" y="5" width="137" height="35" uuid="064163b4-369d-4423-93c4-3ba733ea0ba1"/>
+				<imageExpression><![CDATA["/Users/alysson/java/myreports/logo-escola-small.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="41" width="552" height="1" uuid="e776dadb-03be-4435-8f4b-02cc5fe58cca"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26"/>
+	</columnHeader>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<rectangle radius="2">
+				<reportElement x="218" y="3" width="334" height="20" backcolor="#99FF66" uuid="86aa30d5-be0d-4cae-bc14-b077eb600231"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="28" width="149" height="20" uuid="9dac123e-f926-448f-995c-0e1e8ff1a50a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{curso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="389" y="28" width="143" height="20" uuid="5ad33b13-e320-4844-a5e9-6e1400c5d2f5"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{disciplina}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="3" width="149" height="20" uuid="5b2c256b-d0be-4f7b-96b1-a37b2b0561ff"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="3" width="143" height="20" uuid="e22fa4ae-1cfd-46aa-bc00-b7f237b24a31"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Disciplina]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="37" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="469" y="10" width="40" height="20" uuid="c5957652-3de7-40a1-949c-0f6bbea358e6"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="10" width="80" height="20" uuid="146f0ff8-d4ed-4aa2-92c7-6957f71fe9f0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="25" y="18" width="106" height="19" uuid="1b7f93ad-5832-4a45-a2e2-10297c5e37b3"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

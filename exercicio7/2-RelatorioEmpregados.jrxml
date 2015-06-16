@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioEmpregados" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0788464b-c803-4dc4-a7f2-141fb841b757">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="empresa" class="java.lang.String"/>
+	<field name="empregado" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="salario" class="java.math.BigDecimal"/>
+	<field name="email" class="java.lang.String"/>
+	<group name="Empresa">
+		<groupExpression><![CDATA[$F{empresa}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="69" height="20" uuid="4f281076-23ae-4cdc-8fa4-0f21238424e9"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="8" y="17" width="540" height="1" forecolor="#99FF66" uuid="4fb24edf-8b87-46dc-a3cd-bdbb5d3fd9b0"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<group name="Cidade">
+		<groupExpression><![CDATA[$F{cidade}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<rectangle radius="2">
+					<reportElement x="144" y="0" width="409" height="20" backcolor="#99FF66" uuid="a1205ba0-9084-4440-9336-5dc25b25f081"/>
+				</rectangle>
+				<textField>
+					<reportElement x="69" y="0" width="75" height="20" uuid="42bb35a7-c4bc-4fdc-ba52-6ff513f327c5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="168" y="0" width="72" height="20" uuid="245af1a0-4fbe-4c80-8adb-35c1c5db2572"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[Empregado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="246" y="0" width="73" height="20" uuid="3284232b-72a5-402c-b75d-7649d6712bab"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[Telefone]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="328" y="0" width="120" height="20" uuid="40e807a7-f405-4e61-84a1-d423ee18aa8a"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[E-mail]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="438" y="0" width="102" height="20" uuid="dd2bdffc-7e59-47af-98bf-3354c8324a74"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[Salario]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="555" height="25" uuid="4f4394de-75c9-436d-a2ba-fe5e89db9764"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Relatório de Empregados]]></text>
+			</staticText>
+			<image>
+				<reportElement x="18" y="5" width="137" height="35" uuid="064163b4-369d-4423-93c4-3ba733ea0ba1"/>
+				<imageExpression><![CDATA["/Users/alysson/java/myreports/logo-escola-small.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="40" width="552" height="1" forecolor="#99FF66" uuid="ad7afa73-ab00-4025-af4a-9c9e6a19f3c0"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="328" y="1" width="120" height="20" uuid="ac18c82e-cb15-4d76-bb97-45505bdcff2a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="1" width="73" height="20" uuid="e7d3dcc1-53b6-4043-ab0d-1405ce94b44a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="438" y="1" width="102" height="20" uuid="06ee4f37-9c5c-481b-989a-27318d03e31c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="1" width="72" height="20" uuid="f90935a8-5c19-4a58-86bd-7bf843e4dea1"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empregado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="74" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="484" y="54" width="40" height="20" uuid="c5957652-3de7-40a1-949c-0f6bbea358e6"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="54" width="80" height="20" uuid="146f0ff8-d4ed-4aa2-92c7-6957f71fe9f0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="20" width="322" height="20" uuid="81357a09-b219-4285-b0de-0759bfdc7c39"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O total de funcionarios: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="20" width="100" height="20" uuid="b804f655-47b2-4476-b261-f3d501d27c7a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="24" y="54" width="100" height="20" uuid="877530c5-9fae-4793-a987-ffcbdc787185"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

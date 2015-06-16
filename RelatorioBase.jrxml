@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFuncionarios.jrxml" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7237b604-7568-482a-876a-0be85e87d433">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="13"/>
 	<property name="ireport.y" value="0"/>
-	<subDataset name="salas" uuid="04898e32-fee1-4a28-a5f5-4d5028060f42">
-		<queryString language="SQL">
-			<![CDATA[select * from TB_SALA;]]>
-		</queryString>
-		<field name="ID" class="java.lang.Long">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="CAPACIDADE" class="java.lang.Integer">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="CODIGO" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="DATATERMINOMANUTENCAO" class="java.sql.Date">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="OBSERVACAO" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="POSSUICOMPUTADOR" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="POSSUIDATASHOW" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="POSSUIQUADROBRANCO" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="STATUS" class="java.lang.Integer">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-	</subDataset>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -51,6 +19,87 @@
 	<variable name="totalsalariosreport" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{salario}]]></variableExpression>
 	</variable>
+	<group name="estado" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{estado}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement x="4" y="10" width="100" height="20" uuid="cd08bbcf-39b2-44c0-accb-42ac5f03218d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement x="10" y="2" width="294" height="20" uuid="9c57c999-9723-48cb-a75c-c4b46675ba84"/>
+					<textFieldExpression><![CDATA["O total dos salários da estado " + $F{estado} + " é: "]]></textFieldExpression>
+				</textField>
+				<textField pattern="R$ #,##0.00">
+					<reportElement x="304" y="2" width="100" height="20" uuid="765153a1-2fc6-456b-aa7b-b8f4212fb9ed"/>
+					<textFieldExpression><![CDATA[$V{totalsalariosestado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="21" width="294" height="20" uuid="5aaa8896-5102-464e-82d5-51651416daa6"/>
+					<textFieldExpression><![CDATA["O número de funcionários do estado " + $F{estado} + " é: "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="304" y="21" width="100" height="20" uuid="4b2a32a9-9412-409e-9d44-b4bb0a627038"/>
+					<textFieldExpression><![CDATA[$V{estado_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="g_cidade" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{cidade}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<rectangle>
+					<reportElement x="283" y="30" width="200" height="20" backcolor="#CCFF33" uuid="b8642590-bb57-4a71-b333-a56d9a7029e1"/>
+				</rectangle>
+				<textField>
+					<reportElement x="102" y="14" width="100" height="20" uuid="37a29b29-ad01-449d-9e01-64a48699ced7"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="283" y="30" width="100" height="20" uuid="046895d3-7710-4040-a61f-de5d649d0df5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[funcionario]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="383" y="30" width="100" height="20" backcolor="#99FF66" uuid="3e643edf-251a-46bd-b469-3c6d950e82e1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[salario]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="51">
+				<textField>
+					<reportElement x="10" y="6" width="294" height="20" uuid="d00cf07b-c4ce-4c1a-b246-7f9f97c93849"/>
+					<textFieldExpression><![CDATA["O total dos salários da cidade " + $F{cidade} + " é: "]]></textFieldExpression>
+				</textField>
+				<textField pattern="R$ #,##0.00">
+					<reportElement x="304" y="6" width="100" height="20" uuid="bec5b371-e11e-4b21-8c50-04dd6c56c509"/>
+					<textFieldExpression><![CDATA[$V{totalsalarioscidade}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="26" width="294" height="20" uuid="6426c110-625e-48d2-b122-50670b452fbd"/>
+					<textFieldExpression><![CDATA["O número de funcionários da cidade " + $F{cidade} + " é: "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="304" y="26" width="100" height="20" uuid="34f95f1b-1dac-408b-bea7-a7b4e6ecee36"/>
+					<textFieldExpression><![CDATA[$V{g_cidade_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -79,8 +128,14 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="55" y="0" width="100" height="20" uuid="7534b8b8-56c1-43b9-bc34-c0b34ab5dbe8"/>
-				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+				<reportElement x="283" y="0" width="100" height="20" uuid="864f9117-e27f-427c-8647-f7921d9df23a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{funcionario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="R$ #,##0.00">
+				<reportElement x="383" y="0" width="100" height="20" uuid="7222b599-0ea9-4cf1-a71c-764a2a651857"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{salario}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
